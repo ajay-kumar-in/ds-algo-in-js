@@ -19,11 +19,14 @@
         <li>Reverse an array. O(n)</li>
         <li>Align -ve element at left and +ve at right in an array. O(n)</li>
         <li>Binary Search. O(log n)</li>
-        <li>Insert element in middle of sorted array. O(n)</li>
-        <li>Merge 2 sorted array in sorting order(asc or desc as both are).O(n)</li>
-        <li>1- Union of 2 unsorted arr with unique elements. O(n<sup>2</sup>)</li>
-        <li>2- Union of 2 sorted arr with unique elements. O(n)</li>
-        <li>Intersection of 2 sorted arr with unique elements. O(n)</li>
+        <li>Insert element in <b>middle</b> of <b>sorted</b> array. O(n)</li>
+        <li>Merge 2 <b>sorted</b> array in sorting order(asc or desc as both are).O(n)</li>
+        <li>Union of 2 <b>unsorted</b> arr with <b>unique</b> elements. O(n<sup>2</sup>)</li>
+        <li>Union of 2 <b>sorted</b> arr with <b>unique</b> elements. O(n)</li>
+        <li>Intersection of 2 <b>sorted</b> arr with <b>unique</b> elements. O(n)</li>
+        <li>Single missing el in sequence of <b>sorted</b> arr(srarting from 1)</li>
+        <li>Single/Multiple missing el in in sequence of <b>sorted</b> arr(srarting from any number)</li>
+        <li>Missing elements in <b>unshorted</b> arr.</li>
     </ol>
     <script>
         // -----------------------------Array reverse------------------------------
@@ -199,6 +202,57 @@
         }
 
         intersectionOfSoeredUniqueElArr();
+
+        // -----------method = 1 single missing element in sequence of a sorted arr-----------------
+        function singleMissingElementInArrBeginaAt1() {
+            let arr = [1, 2, 3, 4, 5, 6, 7, 9],
+                arrLength = arr.length,
+                totalSum = (arr[arrLength - 1] * (arr[arrLength - 1] + 1)) / 2,
+                elSum = 0;
+            for (let i = 0; i < arr.length; i++) {
+                elSum += arr[i];
+            }
+            let missingEl = (totalSum) - elSum;
+            console.log(`Single missing element in ${arr} = `, missingEl)
+        }
+        singleMissingElementInArrBeginaAt1();
+
+        // -----------single/multiple missing element in sequence of a sorted arr-----------------
+        function missingElementInSequenceOfSortedArr() {
+            let arr = [5, 7, 8, 11, 12, 13, 18],
+                elIndexDiff = arr[0] - 0,
+                missineElements = []
+            for (let i = 0; i < arr.length; i++) {
+                while (elIndexDiff < (arr[i] - i)) {
+                    missineElements.push(elIndexDiff + i);
+                    elIndexDiff++;
+                }
+            }
+            console.log(`Single/Multiple missing element in ${arr} = `, missineElements)
+        }
+
+        missingElementInSequenceOfSortedArr();
+
+        // ---------------missing elements in sequence of unsorted array--------------
+        function missingElementsInSequenceUnsortedArr() {
+            let arr = [0,0,0,7,7, 5],
+                hashArr = [],
+                missineElements = [];
+
+            for (let i = 0; i < arr.length; i++) {
+                hashArr[arr[i]] = hashArr[arr[i]] ? hashArr[arr[i]] + 1 : 1 ;
+            }
+
+            for (let i = 0; i <= hashArr.length; i++) {
+                if (!hashArr[i]) {
+                    missineElements.push(i)
+                }
+            }
+            console.log('Missing elements in unshorted arr = ', missineElements)
+        }
+
+        missingElementsInSequenceUnsortedArr();
+
     </script>
 </body>
 
