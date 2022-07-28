@@ -26,10 +26,25 @@
         <li>Intersection of 2 <b>sorted</b> arr with <b>unique</b> elements. O(n)</li>
         <li>Single missing el in sequence of <b>sorted</b> arr(srarting from 1)</li>
         <li>Single/Multiple missing el in in sequence of <b>sorted</b> arr(srarting from any number)</li>
-        <li>Missing elements in <b>unshorted</b> arr.</li>
+        <li>Find missing elements in <b>unshorted/sorted</b> arr using hash table.</li>
+        <li>Duplicate elements in an arr
+            <ul>
+                <li>a- Compare elements method (<b>sorted</b>)</li>
+                <li>b- Obj method (<b>sorted/unsorted</b>)</li>
+                <li>c- Hash method (<b>sorted/unsorted</b>)</li>
+            </ul>
+        </li>
+        <li>Duplicate elements in <b>unsorted</b> arr compare elements method</li>
+        <li> Pair of elements with sum 10/k in <b>Unsorted</b> arr <b>(unsorted works for sorted as well)</b>
+            <ul>
+                <li>a- Compare elements method</li>
+                <li>b- Obj method</li>
+                <li>c- Hash method</li>
+            </ul>
+        </li>
     </ol>
     <script>
-        // -----------------------------Array reverse------------------------------
+        // 1 -----------------------------Array reverse------------------------------
         function reverseArr() {
             const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
             let i = 0, j = arr.length - 1;
@@ -44,7 +59,7 @@
         }
         reverseArr();
 
-        // ------------------keep negative number left and positive at right---------------
+        // 2 ------------------keep negative number left and positive at right---------------
         function alignPositiveAndNegativeNum() {
             const arr = [2, -1, -3, 5, 8, -9, 4, 10, -12];
             let i = 0, j = arr.length - 1;
@@ -65,7 +80,7 @@
         }
         alignPositiveAndNegativeNum();
 
-        // ------------------------Binary search------------------------------------
+        // 3 ------------------------Binary search------------------------------------
         function binarySearch() {
             let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], element = 6;
             let start = 0, end = arr.length, middle = Math.floor((start + end) / 2);
@@ -84,7 +99,7 @@
         }
         console.log('Binary search', binarySearch());
 
-        // ---------------insert an element in a sorted array------------
+        // 4 ---------------insert an element in a sorted array------------
         function insertElement(element) {
             const arr = [0, 1, 2, 3, 4, 5, 7, 8, 9];
             let i = arr.length - 1;
@@ -97,7 +112,7 @@
         }
         insertElement(4);
 
-        // --------------merge 2 sorted array el as given sorting order-------------
+        // 5 --------------merge 2 sorted array el as given sorting order-------------
         function mergeSortedArrInAscending() {
             let
                 arr1 = [1, 3, 5, 7, 9],
@@ -126,7 +141,7 @@
 
         mergeSortedArrInAscending();
 
-        // -------------Union of 2 unsorted unique el arr-------------
+        // 6 -------------Union of 2 unsorted unique el arr-------------
         function unionOfUnsortedArr() {
             let arr1 = [5, 2, 1, 3, 6],
                 arr2 = [5, 8, 2, 4, 3, 9],
@@ -150,7 +165,7 @@
 
         unionOfUnsortedArr();
 
-        // -----------------union of 2 sorted unique element array---------
+        // 7 -----------------union of 2 sorted unique element array---------
         function unionOfSortedUniqueElementArr() {
             let arr1 = [3, 5, 6, 9, 12, 16],
                 arr2 = [2, 3, 7, 10, 18],
@@ -180,7 +195,7 @@
 
         unionOfSortedUniqueElementArr();
 
-        // -----------Intersection of 2 sorted unique el arr-------------
+        // 8 -----------Intersection of 2 sorted unique el arr-------------
         function intersectionOfSoeredUniqueElArr() {
             let arr1 = [3, 5, 6, 9, 12, 16],
                 arr2 = [2, 3, 7, 9, 10, 18],
@@ -203,7 +218,7 @@
 
         intersectionOfSoeredUniqueElArr();
 
-        // -----------method = 1 single missing element in sequence of a sorted arr-----------------
+        // 9 -----------method = 1 single missing element in sequence of a sorted arr-----------------
         function singleMissingElementInArrBeginaAt1() {
             let arr = [1, 2, 3, 4, 5, 6, 7, 9],
                 arrLength = arr.length,
@@ -217,7 +232,7 @@
         }
         singleMissingElementInArrBeginaAt1();
 
-        // -----------single/multiple missing element in sequence of a sorted arr-----------------
+        // 10 -----------single/multiple missing element in sequence of a sorted arr-----------------
         function missingElementInSequenceOfSortedArr() {
             let arr = [5, 7, 8, 11, 12, 13, 18],
                 elIndexDiff = arr[0] - 0,
@@ -233,14 +248,14 @@
 
         missingElementInSequenceOfSortedArr();
 
-        // ---------------missing elements in sequence of unsorted array--------------
+        // 11 ---------------missing elements in sequence of unsorted array--------------
         function missingElementsInSequenceUnsortedArr() {
-            let arr = [0,0,0,7,7, 5],
+            let arr = [0, 0, 0, 7, 7, 5],
                 hashArr = [],
                 missineElements = [];
 
             for (let i = 0; i < arr.length; i++) {
-                hashArr[arr[i]] = hashArr[arr[i]] ? hashArr[arr[i]] + 1 : 1 ;
+                hashArr[arr[i]] = hashArr[arr[i]] ? hashArr[arr[i]] + 1 : 1;
             }
 
             for (let i = 0; i <= hashArr.length; i++) {
@@ -252,6 +267,113 @@
         }
 
         missingElementsInSequenceUnsortedArr();
+
+        // 12 -------------find duplicate in sorted array----------
+        function duplicateInSortedArr() {
+            // a -----------------------using comparision (sorted arr)------------------------------
+            let arr = [1, 2, 3, 3, 4, 4, 5, 6, 6, 6, 6, 7, 7, 8],
+                j = 0,
+                lastDuplicate = null,
+                duplicateElements = [];
+            for (let i = 0; i < arr.length - 1; i++) {
+                if (arr[i] === arr[i + 1]) {
+                    lastDuplicate = arr[i];
+                    j = i + 1;
+                    while (lastDuplicate === arr[j]) {
+                        j++
+                    }
+                    duplicateElements.push(arr[i]);
+                    i = j - 1;
+                }
+            }
+
+            // b ---------------------using object assignment (sorted/unsorted arr)----------------------
+            let elCountObj = {},
+                duplicateElementsObj = [];
+            for (let i = 0; i < arr.length; i++) {
+                elCountObj[arr[i]] = elCountObj[arr[i]] ? elCountObj[arr[i]] + 1 : 1;
+            }
+            for (let key in elCountObj) {
+                if (elCountObj[key] > 1) {
+                    duplicateElementsObj.push(+key)
+                }
+            }
+
+            // c ----------------------using hash table (sorted/unsorted arr)------------------------
+            let hashArr = [],
+                duplicateElementHash = [];
+            for (let i = 0; i < arr.length; i++) {
+                hashArr[arr[i]] = hashArr[arr[i]] ? hashArr[arr[i]] + 1 : 1;
+            }
+            for (let i = 0; i < hashArr.length; i++) {
+                if (hashArr[i] && hashArr[i] > 1) {
+                    duplicateElementHash.push(i)
+                }
+            }
+            console.log('Duplicate el in sorted arr (a-Compare elements method  b-obj method  c-hash method)', duplicateElements, duplicateElementsObj, duplicateElementHash);
+        }
+
+        duplicateInSortedArr();
+
+        // 13 --------------find duplicate in unsorted arr--------------
+        function duplicateInUnsortedArr() {
+            let arr = [1, 3, 2, 7, 7, 7, 7, 7, 7, 3, 5],
+                duplicateCount = 0,
+                duplicateElements = [];
+            for (let i = 0; i < arr.length - 1; i++) {
+                duplicateCount = 0;
+                for (let j = i + 1; j < arr.length; j++) {
+                    if (arr[i] === arr[j] && arr[j] !== -1) {
+                        duplicateCount++;
+                        arr[j] = -1;
+                        if (duplicateCount === 1) {
+                            duplicateElements.push(arr[i])
+                        }
+                    }
+                }
+            }
+            console.log('Duplicate el in unsorted arr', duplicateElements)
+        }
+
+        duplicateInUnsortedArr();
+
+        // 14 ----------- paire of elements with sum k in unsorted arr with unique elements--------
+        function pairOfElementsWithSumKInUnsortedArr() {
+            // a ----------------loop method--------------------------
+            let arr = [1, 3, 5, 9, 8, 7, 0, 17, -7],
+                pairElements = [],
+                sum = 10
+            for (let i = 0; i < arr.length - 1; i++) {
+                for (let j = i + 1; j < arr.length; j++) {
+                    if (arr[i] + arr[j] === sum) {
+                        pairElements.push([arr[i], arr[j]])
+                    }
+                }
+            }
+            
+            // b ----------------object method--------------------------
+            let elObj = {},
+            pairElementsObj = [];
+            for (let i = 0; i < arr.length; i++) {
+                elObj[arr[i]] = elObj[arr[i]] ? elObj[arr[i]] + 1 : 1;
+                if (elObj[sum - arr[i]] && sum !== 2*arr[i]) {
+                    pairElementsObj.push([arr[i], sum - [arr[i]]]);
+                }
+            }
+
+            // b ----------------hash method--------------------------
+            let hashArr = [],
+            pairElementsHash = [];
+            for (let i = 0; i < arr.length; i++) {
+                hashArr[arr[i]] =  hashArr[arr[i]] ? hashArr[arr[i]] + 1 : 1;
+                if(hashArr[sum - arr[i]] && sum !== 2*arr[i]) {
+                    pairElementsHash.push([arr[i], sum - arr[i]])
+                }
+            }
+            console.log(`Pair of elements with sum ${sum} (1- Compare elements method  2- Object method  3- Hash method)`, pairElements, pairElementsObj, pairElementsHash)
+        }
+
+        pairOfElementsWithSumKInUnsortedArr();
 
     </script>
 </body>
