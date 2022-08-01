@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ds Algo</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        li {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Ds Algo Recursion - Check output in console.</h2>
+    <ol>
+        <li>Sum of first n natural numbers</li>
+        <li>Factorial of first n natural numbers</li>
+    </ol>
+
+    <script>
+        // #1 ---------Sum of n natural numbers---------
+        let firstNaturalNum = 10;
+        function sumOfNNaturalNumbers(n) {
+            if (n == 0) {
+                return 0
+            } else {
+                return sumOfNNaturalNumbers(n - 1) + n;
+            }
+        }
+
+        let sum = sumOfNNaturalNumbers(firstNaturalNum)
+        console.log(`Sum of first ${firstNaturalNum} natural numbers = `, sum);
+        
+        // #2 ---------Factorial of n natural numbers---------
+        let firstNaturalNumFact = 5;
+        function factorialOfNNaturalNumbers(n) {
+            if (n == 0) {
+                return 1
+            } else {
+                return factorialOfNNaturalNumbers(n - 1) * n;
+            }
+        }
+
+        let factorial = factorialOfNNaturalNumbers(firstNaturalNumFact)
+        console.log(`Factorial of first ${firstNaturalNumFact} natural numbers = `, factorial);
+
+    </script>
+</body>
+
+</html>
