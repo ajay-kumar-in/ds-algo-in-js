@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Logical programs</h2>
+
+    <div id="rootEl"></div>
+
+    <script>
+
+        // 1- Remove _ and convert var name 'abc_def_gh_i_jklm_a' in camel case
+        let underScoredVarStr = 'abc_def_gh_i_jklm_a';
+        function camelCaseVariable(variable) {
+            //--------array form---------------
+            let newVar = [...underScoredVarStr];
+            const varArr = [];
+            newVar.forEach((ch, index) => {
+                if (ch === '_') {
+                    if (newVar[index + 1])
+                        newVar[index + 1] = newVar[index + 1].toUpperCase();
+                } else {
+                    varArr.push(ch)
+                }
+            });
+            console.log('camel case arr: abc_def_gh_i_jklm_a => ', varArr.join(''));
+
+            //--------string form----------------
+            let strVarCamel = '';
+            for (let i = 0; i < variable.length; i++) {
+                if (variable[i] === "_") {
+                    if (variable[i + 1]) {
+                        strVarCamel = strVarCamel + variable[i + 1].toUpperCase();
+                        i++
+                    }
+                } else {
+                    strVarCamel = strVarCamel + variable[i];
+                }
+            }
+            console.log('camel case str: abc_def_gh_i_jklm_a =>', strVarCamel);
+        }
+
+        camelCaseVariable(underScoredVarStr);
+
+
+
+        //2- convert var name 'abcDefGhIJklmA' in underscored case
+        let camelVarStr = 'abcDefGhIJklmA';
+        function underScoredVariable() {
+            let finalUndereScoredVar = '';
+            for (let i = 0; i < camelVarStr.length; i++) {
+                if (camelVarStr[i].toUpperCase() === camelVarStr[i]) {
+                    finalUndereScoredVar = finalUndereScoredVar + '_' + camelVarStr[i].toLowerCase();
+                } else {
+                    finalUndereScoredVar = finalUndereScoredVar + camelVarStr[i]
+                }
+            }
+            console.log('underscored case: abcDefGhIJklmA => ', finalUndereScoredVar);
+        }
+
+        underScoredVariable(camelVarStr);
+
+    </script>
+</body>
+
+</html>
